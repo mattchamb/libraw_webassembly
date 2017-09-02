@@ -1,0 +1,2 @@
+python ../emsdk-portable/emscripten/1.37.21/tools/webidl_binder.py ./bindings.idl glue
+emcc ./lib/.libs/libraw.so glue_wrapper.cpp -O2 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 --post-js ./glue.js -o ./wasm/libraw.html

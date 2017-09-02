@@ -1,0 +1,51 @@
+interface LibRaw
+{
+    void LibRaw();
+    long open_buffer(VoidPtr buffer, unsigned long size);
+    long cameraCount();
+    void recycle();
+    void unpack();
+    long raw2image();
+    long dcraw_process();
+    [Const] DOMString version();
+    [Value] attribute libraw_data_t imgdata;
+    libraw_processed_image_t dcraw_make_mem_image();
+    void dcraw_clear_mem(libraw_processed_image_t image);
+};
+
+interface libraw_processed_image_t
+{
+    attribute unsigned short height;
+    attribute unsigned short width;
+    attribute unsigned short colors;
+    attribute unsigned short bits;
+    attribute unsigned long data_size;
+    attribute octet[] data;
+};
+
+interface libraw_imgother_t
+{
+    attribute float iso_speed;
+    attribute float shutter;
+    attribute float aperture;
+    attribute float focal_len;
+};
+
+interface libraw_image_sizes_t
+{
+    attribute unsigned short raw_height;
+    attribute unsigned short raw_width;
+    attribute unsigned short height;
+    attribute unsigned short width;
+    attribute unsigned short top_margin;
+    attribute unsigned short left_margin;
+    attribute unsigned short iheight;
+    attribute unsigned short iwidth;
+};
+
+interface libraw_data_t
+{
+    [Value] attribute libraw_image_sizes_t sizes;
+    [Value] attribute libraw_imgother_t other;
+};
+
